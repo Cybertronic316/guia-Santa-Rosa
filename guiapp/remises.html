@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+ <link rel="icon" type="image/png" href="img/favicon.png">
+
+    <title>Remises</title>
+   
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .header-naranja {
+            background: linear-gradient(70deg, #0d2043, #010101 100%); 
+            padding: 50px 20px 80px 20px;
+            text-align: center;
+            position: relative;
+            color: white;
+        }
+        .circulo-icono {
+            width: 70px; height: 70px; background: white; border-radius: 50%;
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 35px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); margin-bottom: 10px;
+        }
+        .volver-btn {
+            position: absolute; top: 20px; left: 20px;
+            background: rgba(255,255,255,0.2); padding: 8px 15px; border-radius: 20px;
+            text-decoration: none; color: white; font-weight: bold; font-size: 13px; z-index: 20;
+        }
+        .ola-blanca { position: absolute; bottom: 0; left: 0; width: 100%; line-height: 0; }
+        
+        /* Estilo de la Tarjeta */
+        .card-agencia {
+            background: white;
+            border-radius: 30px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #f1f5f9;
+        }
+
+        .img-agencia {
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+            object-fit: cover;
+            margin: 0 auto 15px auto;
+            background: #f8fafc;
+            border: 3px solid #fff4ed;
+        }
+
+        .btn-wsp-largo {
+            background-color: #25D366;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px;
+            border-radius: 20px;
+            font-weight: 800;
+            text-decoration: none;
+            margin-top: 15px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.2);
+            transition: all 0.2s;
+        }
+        .btn-wsp-largo:active { transform: scale(0.96); background-color: #1eb956; }
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <header class="header-naranja">
+        <a href="index.html" class="absolute top-5 left-5 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-[10px] font-black text-white uppercase tracking-tighter border border-white/20">
+            <i class="fas fa-chevron-left mr-1"></i> Inicio
+        </a>
+    
+        <h1 class="text-3xl font-black tracking-tight text-[#369a9a] uppercase">Remises</h1>
+        
+        <div class="ola-blanca">
+            <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 50px; width: 100%;">
+                <path d="M0.00,49.98 C150.00,150.00 348.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="fill: #f8fafc;"></path>
+            </svg>
+        </div>
+    </header>
+
+    <main class="px-6 -mt-10 relative z-10 space-y-6 pb-12">
+        
+        <div class="card-agencia">
+            <img src="img/24.jpg" alt="Agencia A" class="img-agencia">
+            
+            <h3 class="font-black text-slate-800 text-xl uppercase tracking-tight">Agencia El Sol</h3>
+            <p class="text-xs text-slate-400 font-bold uppercase tracking-widest">Servicio 24 Horas</p>
+
+            <a href="https://wa.me/5492664000000?text=Hola,%20necesito%20un%20remis" class="btn-wsp-largo">
+                <i class="fab fa-whatsapp text-xl"></i> PEDIR POR WHATSAPP
+            </a>
+        </div>
+
+        <div class="card-agencia">
+            <img src="img/24.jpg" alt="Agencia B" class="img-agencia">
+            
+            <h3 class="font-black text-slate-800 text-xl uppercase tracking-tight">Remis Conlara</h3>
+            <p class="text-xs text-slate-400 font-bold uppercase tracking-widest">Viajes Locales</p>
+
+            <a href="https://wa.me/5492664000001?text=Hola,%20necesito%20un%20remis" class="btn-wsp-largo">
+                <i class="fab fa-whatsapp text-xl"></i> PEDIR POR WHATSAPP
+            </a>
+        </div>
+<div class="card-agencia">
+            <img src="24.jpg" alt="Agencia B" class="img-agencia">
+            
+            <h3 class="font-black text-slate-800 text-xl uppercase tracking-tight">Remis Conlara</h3>
+            <p class="text-xs text-slate-400 font-bold uppercase tracking-widest">Viajes Locales</p>
+
+            <a href="https://wa.me/5492664000001?text=Hola,%20necesito%20un%20remis" class="btn-wsp-largo">
+                <i class="fab fa-whatsapp text-xl"></i> PEDIR POR WHATSAPP
+            </a>
+        </div>
+
+        <div class="card-agencia">
+            <img src="img/24.jpg" alt="Agencia B" class="img-agencia">
+            
+            <h3 class="font-black text-slate-800 text-xl uppercase tracking-tight">Remis Conlara</h3>
+            <p class="text-xs text-slate-400 font-bold uppercase tracking-widest">Viajes Locales</p>
+
+            <a href="https://wa.me/5492664000001?text=Hola,%20necesito%20un%20remis" class="btn-wsp-largo">
+                <i class="fab fa-whatsapp text-xl"></i> PEDIR POR WHATSAPP
+            </a>
+        </div>
+    </main>
+
+</body>
+</html>

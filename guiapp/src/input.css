@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Aquí puedes agregar tus estilos personalizados como el header-azul */
+.header-azul {
+    @apply bg-azul-guia flex flex-col items-center justify-center relative py-10 shadow-lg;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+}

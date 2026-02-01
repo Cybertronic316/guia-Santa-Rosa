@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+ <link rel="icon" type="image/png" href="img/favicon.png">
+    
+    <title>Delivery</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .header-naranja { background: linear-gradient(70deg, #0d2043, #010101 100%); padding: 50px 20px 80px 20px; text-align: center; position: relative; color: white; }
+        .ola-blanca { position: absolute; bottom: 0; left: 0; width: 100%; line-height: 0; }
+        
+        /* Efecto de Elevación Realista */
+        .cat-card {
+            background: white; border-radius: 28px; padding: 20px 10px;
+            display: flex; flex-direction: column; align-items: center;
+            text-decoration: none; border: 1px solid #f1f5f9;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.04); 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .cat-card:active { transform: scale(0.92); shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        
+        .cat-card img { 
+            width: 75px; height: 75px; 
+            object-fit: contain; 
+            margin-bottom: 12px;
+            
+        }
+        
+        .cat-card p { 
+    font-size: 11px; 
+    font-weight: 900; 
+    color: #1e293b; 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+    /* Agregar estas dos líneas */
+    text-align: center; 
+    width: 100%;
+}
+        .badge-cantidad {
+            background: #369a9a15; color: #369a9a;
+            font-size: 9px; font-weight: 800;
+            padding: 2px 8px; border-radius: 20px; margin-top: 4px;
+        }
+    </style>
+</head>
+<body class="bg-[#f8fafc]">
+
+    <header class="header-naranja">
+        <a href="index.html" class="absolute top-5 left-5 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-[10px] font-black text-white uppercase tracking-tighter border border-white/20">
+            <i class="fas fa-chevron-left mr-1"></i> Inicio
+        </a>
+        <h1 class="text-3xl font-black text-[#369a9a] uppercase italic tracking-tighter">Delivery</h1>
+        
+        
+        <div class="ola-blanca">
+            <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 50px; width: 100%;"><path d="M0.00,49.98 C150.00,150.00 348.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="fill: #f8fafc;"></path></svg>
+        </div>
+    </header>
+
+    <main class="grid grid-cols-2 gap-4 px-5 -mt-8 relative z-10 pb-10">
+        
+        <a href="delivery/pizzas.html" class="cat-card">
+            <img src="img/icond/pizza.webp" alt="Pizzas">
+            <p>Pizzas</p>
+            <span class="badge-cantidad">8 LOCALES</span>
+        </a>
+
+        <a href="delivery/burgers.html" class="cat-card">
+            <img src="img/icond/burger.webp" alt="Burgers">
+            <p>Burgers</p>
+            <span class="badge-cantidad">5 LOCALES</span>
+        </a>
+
+        <a href="delivery/sandwich.html" class="cat-card">
+             <img src="img/icond/lomito.webp" alt="Lomitos">
+            <p>Sandwich Milanesas Lomitos</p>
+            <span class="badge-cantidad">6 LOCALES</span>
+        </a>
+
+        <a href="delivery/empanadas.html" class="cat-card">
+            <img src="img/icond/empanadas.webp" alt="Empanadas">
+            <p>Empanadas</p>
+            <span class="badge-cantidad">4 LOCALES</span>
+        </a>
+
+        <a href="delivery/helado.html" class="cat-card">
+            <img src="img/icond/helado.webp" alt="Helados">
+            <p>Helados</p>
+            <span class="badge-cantidad">3 LOCALES</span>
+        </a>
+
+        <a href="delivery/roti.html" class="cat-card">
+            <img src="img/icond/rotiseria.webp" alt="Rotisería">
+            <p>Rotisería</p>
+            <span class="badge-cantidad">7 LOCALES</span>
+        </a>
+
+        <a href="delivery/bebidas.html" class="cat-card">
+            <img src="img/icond/bebidas.webp" alt="Bebidas">
+            <p>Bebidas</p>
+            <span class="badge-cantidad">2 LOCALES</span>
+        </a>
+
+    </main>
+
+</body>
+</html>
