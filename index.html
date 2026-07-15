@@ -1,396 +1,297 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-   
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guía Santa Rosa del Conlara</title>
-
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#0d2043">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-    <link rel="icon" type="image/png" href="img/favicon.png">
-    <link rel="apple-touch-icon" href="img/icon-192.png">
-    <link rel="apple-touch-startup-image" href="img/icon-512.png">
-
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap" rel="stylesheet">
+    <!-- Importamos Tailwind CSS para el diseño rápido y limpio -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
+    <!-- Iconos de FontAwesome para que no falte ningún gráfico -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Vinculo al manifiesto PWA -->
+    <link rel="manifest" href="manifest.json">
     <style>
-        body { font-family: 'Montserrat', sans-serif; }
-        h1 { font-weight: 900; }
-        .hidden { display: none; } /* Asegúrate de tener esto para el banner */
-    </style>
-
-    
-    <style>
-        .header-naranja { 
-            background: linear-gradient(70deg, #0d2043, #010101 100%); 
-            padding: 50px 20px 80px 20px; 
-            text-align: center; 
-            position: relative; 
-            color: white; 
-        }
-        .ola-blanca { position: absolute; bottom: 0; left: 0; width: 100%; line-height: 0; }
-        
-   .banner-link {
-    display: block;
-    width: 100%;
-    height: 65px; /* Altura controlada para que no sea muy grande */
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    border: 2px solid white;
-    margin-top: 25px; /* Separa el banner del texto del header */
-}
-
-.banner-img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; /* Esto evita que la imagen se deforme */
-}
-
-.ofertasSwiper { width: 100%; padding-top: 20px; padding-bottom: 50px !important; }
-
-    /* Ajuste para el modo Carrusel */
-    .swiper-slide.card-oferta {
-        width: 300px !important; /* Ancho fijo para que luzca el efecto */
-        height: 160px !important;
-        border-radius: 28px;
-        overflow: hidden;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        transition: opacity 0.3s;
-    }
-
-    /* Las tarjetas de los costados se ven un poco más transparentes */
-    .swiper-slide:not(.swiper-slide-active) {
-        opacity: 0.5;
-    }
-
-    /* ZOOM AL TOCAR: Se activa cuando el dedo presiona la tarjeta */
-    .card-oferta img {
-        transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-    .card-oferta:active img {
-        transform: scale(1.3);
-    }
-
-    .swiper-pagination-bullet-active {
-        background: #369a9a !important;
-        width: 20px !important;
-        border-radius: 5px !important;
-    }
-
-
-        /* Botón Pulsar WhatsApp */
-        .btn-wsp-pulsar {
-            display: flex; align-items: center; gap: 8px;
-            background-color: #25d366; color: white;
-            padding: 8px 20px; border-radius: 50px;
-            text-decoration: none; font-size: 13px;
-            font-weight: 800; text-transform: uppercase;
-            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
-            animation: palpita 2s infinite;
-        }
-
-       /* El secreto: Definir la animación que pusiste en el botón */
-@keyframes palpita {
-    0% { transform: scale(1); box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3); }
-    50% { transform: scale(1.05); box-shadow: 0 4px 20px rgba(37, 211, 102, 0.6); }
-    100% { transform: scale(1); box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3); }
-}
-
-        /* Agrega esto a tu CSS para que el movimiento no tenga efecto de aceleración/deceleración */
-    .swiper-wrapper {
-        transition-timing-function: linear !important;
-    }
-
-
-@keyframes bounce-subtle {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-}
-.animate-bounce-subtle {
-    animation: bounce-subtle 3s infinite ease-in-out;
-}
-
-
+        /* Ocultar barra de scroll en los carruseles pero permitir el deslizamiento táctil */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="bg-slate-50 font-sans text-slate-900">
+<body class="bg-[#E6DCC4] text-slate-800 font-sans min-h-screen flex flex-col">
 
-<header class="header-naranja relative p-8 pb-5">
-    <div class="flex flex-col items-center justify-center gap-2">
-        <img src="img/gps.png" alt="Icono Guía" 
-             class="w-12 h-12 object-contain drop-shadow-[0_2px_10px_rgba(255,255,255,0.3)]">
-        
-        <h1 style="font-family: 'Montserrat', sans-serif;" 
-            class="text-2xl font-[900] uppercase italic tracking-tighter text-[#369a9a] leading-none">
-            Guía Santa Rosa <br> 
-            <span class="text-white text-lg not-italic font-extrabold tracking-normal">del Conlara</span>
-        </h1>
-    </div>
+    <!-- HEADER / ENCABEZADO -->
+    <header class="bg-white py-4 px-6 shadow-sm border-b border-gray-100">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <!-- Logo y Título principal -->
+            <div class="flex items-center gap-3">
+                <div class="bg-[#12423F] p-2.5 rounded-full text-white text-2xl flex items-center justify-center w-12 h-12">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-black text-[#12423F] leading-tight">Guía Santa Rosa</h1>
+                    <p class="text-sm font-semibold text-amber-600 tracking-wider">del Conlara</p>
+                </div>
+            </div>
 
-    <div class="ola-blanca">
-        <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 15px; width: 100%;">
-            <path d="M0.00,49.98 C150.00,150.00 348.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="fill: #f8fafc;"></path>
-        </svg>
-    </div>
-</header>
-
-
-<main class="-mt-8 relative z-10 px-4">
-    <div class="mb-6">
-        <a href="https://wa.me/5492664000000" target="_blank" class="banner-link">
-            <img src="img/polleria.jpg" class="banner-img" alt="Pollería Ayllu">
-        </a>
-    </div>
-
-    <div class="grid grid-cols-2 gap-4 mb-6 px-2">
-        <a href="colectivos.html" class="bg-white p-4 rounded-[25px] shadow-sm border border-slate-100 flex flex-col items-center justify-center active:scale-95 transition-all">
-            <img src="img/icon-bus.webp" alt="Colectivos" class="w-15 h-15 mb-2">
-            <p class="font-black text-slate-700 uppercase text-[10px]">Colectivos</p>
-        </a>
-        <a href="delivery.html" class="bg-white p-4 rounded-[25px] shadow-sm border border-slate-100 flex flex-col items-center justify-center active:scale-95 transition-all">
-            <img src="img/icon-delivery.webp" alt="Delivery" class="w-15 h-15 mb-2">
-            <p class="font-black text-slate-700 uppercase text-[10px]">Delivery</p>
-        </a>
-        <a href="remises.html" class="bg-white p-4 rounded-[25px] shadow-sm border border-slate-100 flex flex-col items-center justify-center active:scale-95 transition-all">
-            <img src="img/icon-remises.webp" alt="Remises" class="w-15 h-15 mb-2">
-            <p class="font-black text-slate-700 uppercase text-[10px]">Remises</p>
-        </a>
-        <a href="farmacias.html" class="bg-white p-4 rounded-[25px] shadow-sm border border-slate-100 flex flex-col items-center justify-center active:scale-95 transition-all">
-            <img src="img/icon-farmacia.webp" alt="Farmacias" class="w-15 h-15 mb-2">
-            <p class="font-black text-slate-700 uppercase text-[10px]">Farmacias</p>
-        </a>
-    </div>
-
-    <section class="mb-8 px-2">
-        <div class="flex justify-between items-center mb-3">
-            <h2 class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Ofertas Destacadas</h2>
-            <span class="bg-orange-100 text-orange-600 text-[9px] font-black px-2 py-1 rounded-full uppercase italic">¡Solo por hoy!</span>
+            <!-- Accesos rápidos / Categorías superiores -->
+            <nav class="flex flex-wrap justify-center gap-6 text-xs font-bold text-slate-700">
+                <a href="colectivos.html" class="flex flex-col items-center gap-1 hover:text-[#12423F] transition-colors">
+                    <i class="fa-solid fa-bus text-xl"></i>
+                    <span>Colectivos</span>
+                </a>
+                <a href="delivery.html" class="flex flex-col items-center gap-1 hover:text-[#12423F] transition-colors">
+                    <i class="fa-solid fa-motorcycle text-xl"></i>
+                    <span>Delivery</span>
+                </a>
+                <a href="remises.html" class="flex flex-col items-center gap-1 hover:text-[#12423F] transition-colors">
+                    <i class="fa-solid fa-car text-xl"></i>
+                    <span>Remises</span>
+                </a>
+                <a href="farmacias.html" class="flex flex-col items-center gap-1 hover:text-[#12423F] transition-colors">
+                    <i class="fa-solid fa-square-plus text-xl text-red-500"></i>
+                    <span>Farmacias</span>
+                </a>
+            </nav>
         </div>
+    </header>
 
-        <div class="swiper ofertasSwiper">
-            <div class="swiper-wrapper">
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="max-w-6xl w-full mx-auto px-4 py-6 flex-grow space-y-8">
+
+        <!-- SECCIÓN 1: DELIVERY DISPONIBLE ?? -->
+        <section>
+            <h2 class="text-lg font-extrabold text-[#12423F] mb-3 flex items-center gap-2">
+                DELIVERY DISPONIBLE ??
+            </h2>
+            <div class="relative">
+                <!-- Contenedor deslizable (Scroll horizontal en celular, carrusel en pc) -->
+                <div class="flex gap-4 overflow-x-auto no-scrollbar pb-2 snap-x">
+                    
+                    <!-- Tarjeta 1 -->
+                    <div class="bg-white rounded-2xl shadow-md overflow-hidden min-w-[280px] md:min-w-[340px] flex-1 snap-start border border-gray-100">
+                        <img src="img/pizzadonluis.jpg" alt="Pizzería Don Luis" class="w-full h-32 object-cover bg-gray-200">
+                        <div class="p-4 flex flex-col justify-between h-[120px]">
+                            <div>
+                                <h3 class="font-extrabold text-base">Pizzería Don Luis</h3>
+                                <p class="text-xs text-gray-500">Muzzarella Pizza</p>
+                            </div>
+                            <div class="flex items-center justify-between mt-2">
+                                <span class="font-black text-lg text-slate-800">$8.500</span>
+                                <a href="https://wa.me/5492664000000?text=Hola! Quiero pedir una Pizza" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs py-2 px-4 rounded-full flex items-center gap-1.5 transition-colors">
+                                    <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 2 -->
+                    <div class="bg-white rounded-2xl shadow-md overflow-hidden min-w-[280px] md:min-w-[340px] flex-1 snap-start border border-gray-100">
+                        <img src="img/lahuerta.jpg" alt="Verdulería La Huerta" class="w-full h-32 object-cover bg-gray-200">
+                        <div class="p-4 flex flex-col justify-between h-[120px]">
+                            <div>
+                                <h3 class="font-extrabold text-base">Verdulería La Huerta</h3>
+                                <p class="text-xs text-gray-500">Verdulería y derivados</p>
+                            </div>
+                            <div class="flex items-center justify-between mt-2">
+                                <span class="font-black text-lg text-slate-800">- - -</span>
+                                <a href="https://wa.me/5492664000000?text=Hola! Quiero hacer un pedido" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs py-2 px-4 rounded-full flex items-center gap-1.5 transition-colors">
+                                    <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 3 -->
+                    <div class="bg-white rounded-2xl shadow-md overflow-hidden min-w-[280px] md:min-w-[340px] flex-1 snap-start border border-gray-100">
+                        <img src="img/heladeriamerlin.jpg" alt="Heladería Merlín" class="w-full h-32 object-cover bg-gray-200">
+                        <div class="p-4 flex flex-col justify-between h-[120px]">
+                            <div>
+                                <h3 class="font-extrabold text-base">Heladería Merlín</h3>
+                                <p class="text-xs text-gray-500">Delivery de helados artesanales</p>
+                            </div>
+                            <div class="flex items-center justify-between mt-2">
+                                <span class="font-black text-lg text-slate-800">- - -</span>
+                                <a href="https://wa.me/5492664000000?text=Hola! Quiero pedir helado" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs py-2 px-4 rounded-full flex items-center gap-1.5 transition-colors">
+                                    <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: OFERTAS DESTACADAS ?? -->
+        <section>
+            <h2 class="text-lg font-extrabold text-[#12423F] mb-3 flex items-center gap-2">
+                OFERTAS DESTACADAS ??
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 
-                <div class="swiper-slide card-oferta bg-gradient-to-br from-orange-500 to-red-600 group">
-                    <div class="flex h-full w-full">
-                        <div class="w-1/2 p-4 flex flex-col justify-between text-white z-10">
-                            <div>
-                                <p class="text-[8px] font-bold opacity-80 uppercase">Rotisería El Sol</p>
-                                <h3 class="text-base font-black leading-tight">Muzzarella Grande</h3>
-                            </div>
-                            <div class="mt-2">
-                                <span class="text-xl font-black block">$8.500</span>
-                                <a href="https://wa.me/5492664000000?text=Hola! Quiero la oferta de Pizzas" class="inline-block bg-white text-orange-600 px-4 py-2 rounded-xl text-[10px] font-black">PEDIR</a>
-                            </div>
+                <!-- Oferta 1 -->
+                <div class="bg-white rounded-2xl p-4 shadow-sm flex items-center justify-between border border-gray-100">
+                    <div class="flex-1">
+                        <p class="text-xs font-bold text-gray-400 uppercase">Rotisería El Sol</p>
+                        <h3 class="font-extrabold text-slate-800 text-base">Muzzarella Grande</h3>
+                        <div class="flex items-center gap-3 mt-2">
+                            <span class="font-black text-lg text-slate-800">$8.500</span>
+                            <a href="https://wa.me/5492664000000?text=Quiero la oferta de Pizza Muzzarella" class="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-[10px] py-1 px-3 rounded-full transition-colors">PEDIR</a>
                         </div>
-                        <div class="w-1/2 relative overflow-hidden">
-                            <img src="img/icond/lomito.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-active:scale-125 group-hover:scale-125" style="clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);">
+                    </div>
+                    <div class="w-14 h-14 bg-amber-100 rounded-2xl flex items-center justify-center text-amber-600 text-2xl ml-2">
+                        <i class="fa-solid fa-pizza-slice"></i>
+                    </div>
+                </div>
+
+                <!-- Oferta 2 -->
+                <div class="bg-white rounded-2xl p-4 shadow-sm flex items-center justify-between border border-gray-100">
+                    <div class="flex-1">
+                        <p class="text-xs font-bold text-gray-400 uppercase">Súper Santa Rosa</p>
+                        <h3 class="font-extrabold text-slate-800 text-base">Pack Cerveza Latas</h3>
+                        <div class="flex items-center gap-3 mt-2">
+                            <span class="font-black text-lg text-slate-800">$9.200</span>
+                            <a href="https://wa.me/5492664000000?text=Quiero la oferta de Cervezas" class="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-[10px] py-1 px-3 rounded-full transition-colors">PEDIR</a>
+                        </div>
+                    </div>
+                    <div class="w-14 h-14 bg-amber-100 rounded-2xl flex items-center justify-center text-amber-600 text-2xl ml-2">
+                        <i class="fa-solid fa-beer-mug-empty"></i>
+                    </div>
+                </div>
+
+                <!-- Oferta 3 -->
+                <div class="bg-white rounded-2xl p-4 shadow-sm flex items-center justify-between border border-gray-100">
+                    <div class="flex-1">
+                        <p class="text-xs font-bold text-gray-400 uppercase">Heladería Merlín</p>
+                        <h3 class="font-extrabold text-slate-800 text-base">2kg de Helado</h3>
+                        <div class="flex items-center gap-3 mt-2">
+                            <span class="font-black text-lg text-slate-800">$14.000</span>
+                            <a href="https://wa.me/5492664000000?text=Quiero la oferta de 2kg de Helado" class="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-[10px] py-1 px-3 rounded-full transition-colors">PEDIR</a>
+                        </div>
+                    </div>
+                    <div class="w-14 h-14 bg-amber-100 rounded-2xl flex items-center justify-center text-amber-600 text-2xl ml-2">
+                        <i class="fa-solid fa-ice-cream"></i>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: SERVICIOS ESENCIALES ?? -->
+        <section>
+            <h2 class="text-lg font-extrabold text-[#12423F] mb-3 flex items-center gap-2">
+                SERVICIOS ESENCIALES <span class="bg-red-500 text-white text-[10px] py-0.5 px-2 rounded-md font-bold">SOS</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                
+                <!-- Remiserías -->
+                <div class="bg-white rounded-2xl p-4 shadow-sm flex gap-4 border border-gray-100">
+                    <div class="text-3xl text-slate-700 flex items-center"><i class="fa-solid fa-car-rear"></i></div>
+                    <div class="flex-1 space-y-1">
+                        <h3 class="font-extrabold text-base">Remiserías</h3>
+                        <p class="text-xs text-gray-500"><i class="fa-solid fa-phone text-gray-400 mr-1"></i> Santa Rosa: (2656) 412345</p>
+                        <a href="tel:2656412345" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs py-1.5 px-4 rounded-full mt-1">Llamar</a>
+                    </div>
+                </div>
+
+                <!-- Farmacias -->
+                <div class="bg-white rounded-2xl p-4 shadow-sm flex gap-4 border border-gray-100">
+                    <div class="text-3xl text-red-500 flex items-center"><i class="fa-solid fa-briefcase-medical"></i></div>
+                    <div class="flex-1 space-y-1">
+                        <h3 class="font-extrabold text-base">Farmacias de Turno</h3>
+                        <p class="text-xs text-gray-500"><i class="fa-solid fa-location-dot text-gray-400 mr-1"></i> San Martín 103</p>
+                        <span class="inline-block text-[10px] text-emerald-600 font-bold uppercase tracking-wider">De Turno</span>
+                        <div class="pt-1">
+                            <a href="farmacias.html" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs py-1.5 px-4 rounded-full">Ver Turnos</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="swiper-slide card-oferta bg-gradient-to-br from-blue-600 to-indigo-700 group">
-                    <div class="flex h-full w-full">
-                        <div class="w-1/2 p-4 flex flex-col justify-between text-white z-10">
-                            <div>
-                                <p class="text-[8px] font-bold opacity-80 uppercase">Súper Santa Rosa</p>
-                                <h3 class="text-base font-black leading-tight">Pack Cerveza Latas</h3>
-                            </div>
-                            <div class="mt-2">
-                                <span class="text-xl font-black block text-yellow-300">$9.200</span>
-                                <a href="https://wa.me/5492664000000?text=Hola! Quiero la oferta de Cervezas" class="inline-block bg-white text-blue-700 px-4 py-2 rounded-xl text-[10px] font-black">PEDIR</a>
-                            </div>
-                        </div>
-                        <div class="w-1/2 relative overflow-hidden">
-                            <img src="img/icond/lomito.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-active:scale-125 group-hover:scale-125" style="clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide card-oferta bg-gradient-to-br from-pink-500 to-purple-600 group">
-                    <div class="flex h-full w-full">
-                        <div class="w-1/2 p-4 flex flex-col justify-between text-white z-10">
-                            <div>
-                                <p class="text-[8px] font-bold opacity-80 uppercase">Heladería Merlín</p>
-                                <h3 class="text-base font-black leading-tight">2kg de Helado</h3>
-                            </div>
-                            <div class="mt-2">
-                                <span class="text-xl font-black block">$14.000</span>
-                                <a href="https://wa.me/5492664000000?text=Hola! Quiero la oferta de Helado" class="inline-block bg-white text-pink-600 px-4 py-2 rounded-xl text-[10px] font-black">PEDIR</a>
-                            </div>
-                        </div>
-                        <div class="w-1/2 relative overflow-hidden">
-                            <img src="img/icond/lomito.webp" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-active:scale-125 group-hover:scale-125" style="clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);">
+                <!-- Colectivos -->
+                <div class="bg-white rounded-2xl p-4 shadow-sm flex gap-4 border border-gray-100">
+                    <div class="text-3xl text-slate-700 flex items-center"><i class="fa-solid fa-bus-simple"></i></div>
+                    <div class="flex-1 space-y-1">
+                        <h3 class="font-extrabold text-base">Horarios Colectivos</h3>
+                        <p class="text-xs text-gray-500">Rutas Locales e Interurbanas</p>
+                        <div class="pt-2">
+                            <a href="colectivos.html" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs py-1.5 px-4 rounded-full">Ver Horarios</a>
                         </div>
                     </div>
                 </div>
 
             </div>
-            <div class="swiper-pagination"></div>
-        </div>
+        </section>
 
-        <div class="flex justify-center mt-4"> 
-            <a href="https://wa.me/2656411777" class="btn-wsp-pulsar" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="18" style="filter: brightness(0) invert(1);">
-                Agregar mi anuncio
+        <!-- SECCIÓN 4: PROFESIONALES LOCALES ??? -->
+        <section>
+            <h2 class="text-lg font-extrabold text-[#12423F] mb-3 flex items-center gap-2">
+                PROFESIONALES LOCALES ???
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+                <!-- Gasista -->
+                <div class="bg-white rounded-2xl p-4 shadow-sm flex gap-4 items-center border border-gray-100">
+                    <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-xl text-slate-600">
+                        <i class="fa-solid fa-user-helmet-safety"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="font-extrabold text-base leading-tight">Juan G. (Gasista Matr.)</h3>
+                        <p class="text-xs text-gray-400">Certificado Lote 4</p>
+                        <a href="https://wa.me/5492664000000?text=Hola Juan, necesito una consulta por gas" class="inline-block bg-emerald-600 text-white text-[10px] font-bold py-1 px-3 rounded-full mt-2">WhatsApp</a>
+                    </div>
+                </div>
+
+                <!-- Plomero -->
+                <div class="bg-white rounded-2xl p-4 shadow-sm flex gap-4 items-center border border-gray-100">
+                    <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-xl text-slate-600">
+                        <i class="fa-solid fa-wrench"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="font-extrabold text-base leading-tight">Pedro V. (Plomero 24h)</h3>
+                        <p class="text-xs text-gray-400">Urgencias</p>
+                        <a href="https://wa.me/5492664000000?text=Hola Pedro, tengo una urgencia de plomería" class="inline-block bg-emerald-600 text-white text-[10px] font-bold py-1 px-3 rounded-full mt-2">WhatsApp</a>
+                    </div>
+                </div>
+
+                <!-- Electricista -->
+                <div class="bg-white rounded-2xl p-4 shadow-sm flex gap-4 items-center border border-gray-100">
+                    <div class="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-xl text-slate-600">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="font-extrabold text-base leading-tight">Ana R. (Electricista)</h3>
+                        <p class="text-xs text-gray-400">Instalaciones domiciliarias</p>
+                        <a href="https://wa.me/5492664000000?text=Hola Ana, necesito un presupuesto de electricidad" class="inline-block bg-emerald-600 text-white text-[10px] font-bold py-1 px-3 rounded-full mt-2">WhatsApp</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- BOTONES INFERIORES DE ACCIÓN -->
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4 pt-6">
+            <a href="https://wa.me/2656411777?text=Hola! Quiero agregar mi anuncio a la Guía" target="_blank" class="bg-[#12423F] hover:bg-[#0d2e2c] text-white font-extrabold text-xs py-3 px-6 rounded-full shadow-md transition-all flex items-center gap-2 w-full sm:w-auto justify-center">
+                <i class="fa-solid fa-plus"></i> Agregar mi anuncio
+            </a>
+            <a href="https://wa.me/2656411777" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs py-3 px-6 rounded-full shadow-md transition-all flex items-center gap-2 w-full sm:w-auto justify-center">
+                <i class="fa-brands fa-whatsapp text-base"></i> Grupo Compra Venta
             </a>
         </div>
 
-     <div class="flex justify-center my-10 px-4"> 
-    <a href="https://wa.me/2656411777" 
-       target="_blank" 
-       class="flex items-center justify-center gap-3 bg-blue-500 hover:bg-blue-600 text-white py-4 px-6 rounded-2xl shadow-xl transition-all active:scale-95 w-full max-w-[320px] border border-white/20">
-        
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
-             width="20" 
-             style="filter: brightness(0) invert(1);"
-             alt="WA">
-        
-        <span class="text-[12px] font-extrabold uppercase tracking-tight leading-none text-white">
-            Grupo Compra Venta Santa Rosa
-        </span>
-    </a>
-</div>
+    </main>
 
-
-    </section>
-</main>
-
-<script>
-    window.onload = function() {
-        var swiper = new Swiper(".ofertasSwiper", {
-            effect: "coverflow", // ACTIVAMOS EFECTO CARRUSEL
-            grabCursor: true,
-            centeredSlides: true,
-            slidesPerView: "auto",
-            loop: true,
-            
-            coverflowEffect: {
-                rotate: 20,     // Grados de inclinación de las tarjetas laterales
-                stretch: 0,     // Espacio entre ellas
-                depth: 200,     // Qué tan "atrás" se ven las de los lados
-                modifier: 1,    // Fuerza del efecto
-                slideShadows: false, // Sombras internas (mejor dejarlo en false para colores planos)
-            },
-
-            // MOVIMIENTO AUTOMÁTICO
-            autoplay: {
-                delay: 2000, 
-                disableOnInteraction: false,
-            },
-            speed: 800, // Velocidad del cambio
-
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-        });
-    };
-</script>
-
-<script>
-    // 1. REGISTRO DEL SERVICE WORKER
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js').then(() => {
-            console.log("Service Worker registrado correctamente");
-        }).catch(err => console.log("Fallo al registrar SW", err));
-    }
-
-    // 2. LÓGICA DEL BANNER DE INSTALACIÓN
-    let deferredPrompt;
-    const installBanner = document.getElementById('install-banner');
-    const btnInstall = document.getElementById('btn-install');
-
-    // Escuchamos el evento de instalación
-    window.addEventListener('beforeinstallprompt', (e) => {
-        // Evita el cartel por defecto de Chrome
-        e.preventDefault();
-        deferredPrompt = e;
-
-        // Si los elementos existen en el HTML, mostramos el banner
-        if (installBanner) {
-            installBanner.classList.remove('hidden');
-        }
-    });
-
-    // Solo agregamos el evento si el botón realmente existe en el HTML
-    if (btnInstall) {
-        btnInstall.addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt(); 
-                const { outcome } = await deferredPrompt.userChoice;
-                if (outcome === 'accepted') {
-                    console.log('El vecino de Santa Rosa instaló la App');
-                }
-                deferredPrompt = null;
-                if (installBanner) installBanner.classList.add('hidden');
-            }
-        });
-    }
-
-    // Función para cerrar el banner manualmente
-    function dismissInstall() {
-        if (installBanner) {
-            installBanner.classList.add('hidden');
-        }
-    }
-</script>
-
-<footer class="bg-white border-t border-slate-200 pt-8 pb-12 mt-10">
-    <div class="flex flex-col items-center justify-center gap-4">
-        
-        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Seguinos en redes</p>
-        
-        <div class="flex gap-6">
-            <a href="https://facebook.com/tu_pagina" target="_blank" 
-               class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-transform">
-                <i class="fab fa-facebook-f text-lg"></i>
-            </a>
-
-            <a href="https://instagram.com/tu_cuenta" target="_blank" 
-               class="w-10 h-10 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 text-white rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-transform">
-                <i class="fab fa-instagram text-lg"></i>
-            </a>
-
-            <a href="https://wa.me/5492664000000" target="_blank" 
-               class="w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-transform">
-                <i class="fab fa-whatsapp text-lg"></i>
-            </a>
+    <!-- PIE DE PÁGINA -->
+    <footer class="bg-[#12423F] text-white py-6 px-4 mt-8 text-center text-xs space-y-3">
+        <p class="text-gray-300">Seguinos en redes</p>
+        <div class="flex justify-center gap-4 text-lg">
+            <a href="#" class="hover:text-amber-400"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" class="hover:text-amber-400"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="hover:text-amber-400"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
-
-        <div class="mt-6 text-center">
-            <p class="text-[11px] font-bold text-slate-500 italic">Guía Santa Rosa del Conlara</p>
-            <p class="text-[9px] text-slate-400 mt-1 uppercase tracking-tighter">© 2026 - Todos los derechos reservados</p>
+        <div class="text-[10px] text-gray-400 border-t border-emerald-950 pt-4">
+            <p>Guía Santa Rosa del Conlara</p>
+            <p>© 2026 - Todos los derechos reservados</p>
         </div>
-    </div>
-</footer>
-
+    </footer>
 
 </body>
-
-<div id="install-banner" class="hidden fixed bottom-4 left-4 right-4 bg-[#0d2043] text-white p-4 rounded-2xl shadow-2xl z-[100] border border-white/20 animate-bounce-subtle">
-    <div class="flex items-center justify-between">
-        <div class="flex items-center gap-3">
-            <img src="img/icon-192.png" class="w-10 h-10 rounded-lg shadow-md" alt="Logo">
-            <div>
-                <p class="text-xs font-black uppercase tracking-tight text-[#369a9a]">Guía Santa Rosa</p>
-                <p class="text-[10px] opacity-80">Agregá la app a tu pantalla</p>
-            </div>
-        </div>
-        <div class="flex gap-2">
-            <button onclick="dismissInstall()" class="text-[10px] uppercase font-bold px-3 py-2 opacity-60">Luego</button>
-            <button id="btn-install" class="bg-[#369a9a] text-white text-[10px] uppercase font-black px-4 py-2 rounded-xl shadow-lg">Instalar</button>
-        </div>
-    </div>
-</div>
-
 </html>
